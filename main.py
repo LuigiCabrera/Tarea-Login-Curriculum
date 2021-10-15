@@ -19,8 +19,11 @@ def login():
         local_save(new_user)
     return render_template("login.html")
 
+@app.route("/main", methods=["POST"])
+def main():
+    return "a"
 
-@app.route("/")
+@app.route("/form1")
 def index():
     session["personal_info"] = []
     return render_template("form1_personal_data.html")

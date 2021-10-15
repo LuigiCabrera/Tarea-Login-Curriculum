@@ -7,7 +7,37 @@
     <body>
 
         <script>
-            
+
+            //var msg_error_email = "*Invalid email";
+            //var msg_error_pass= "*Password to short";
+
+            function verify_email(string){
+                if (string.includes('@') && string.includes('.') && string.length > 4) return true;
+                else return false;
+            };
+
+            function verify_password(string){
+                if (string.length >= 5) return true;
+                else return false;
+            };
+
+            function verify_data(){
+                if (verify_email(document.querySelector('#email').value) === false){
+                    document.getElementById('submit').disabled = true;
+                    document.getElementById('email').style.borderColor = "rgb(255, 180, 166)";
+                    
+                }else if (verify_password(document.querySelector('#password').value) === false){
+                    document.getElementById('submit').disabled = true;
+                    document.getElementById('password').style.borderColor = "rgb(255, 180, 166)";
+                    
+                }else{
+                    document.getElementById('submit').disabled = false;
+                    document.getElementById('password').style.borderColor = "grey";
+                    document.getElementById('email').style.borderColor = "grey";
+                }
+            };
+
+        
         </script>
 
         <div class="header">
@@ -18,11 +48,13 @@
             <div class="box">
                 <h3>Register</h3>
                 <p>Email</p>
-                <input>
+                <input id="email" name="email" type="text" placeholder="Write a valid email" onmouseout="verify_data()" onkeydown="verify_data()">
+                <div id="incorrect_email"></div>
                 <p>Password</p>
-                <input>
+                <input id="password" name="password" type="password" placeholder="Min 5 characters" onmouseout="verify_data()" onkeydown="verify_data()">
+                <div id="incorrect_pass"></div>
                 <br><br>
-                <button>Register</button>
+                <button id="submit" disabled>Register</button>
                 <br><br>
             </div>
         </form>
