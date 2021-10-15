@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Render Your CV!</title>
+        <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
+        <style>
+            
+        </style>
+    </head>
+    <body>
+
+        <form method="post">
+
+            <p>Studies</p>
+            <div class="box">
+
+                {% for d in studies %}
+                    <li>({{d[0]}} - {{d[1]}})  {{d[2]}} - {{d[3]}}</li>
+                {% endfor %}
+                <br>
+
+                <div class="grid_2">
+                    
+                    <label>Begin Year</label>
+                    <label>End Year</label>
+                    <label>Title</label>
+                    <label>Place of Study</label>
+
+                    <input type="number" name="y_begin_s">
+                    <input type="number" name="y_end_s">
+                    <input type="title" name="title">
+                    <input type="text" name="study">
+                </div>
+
+                <button class="no_grid" formaction="{{ url_for('form2') }}" formmethod="post">Add</button>
+
+            </div>
+
+            <p>Work Experience</p>
+            <div class="box">
+                
+                {% for d in work %}
+                    <li>({{d[0]}} - {{d[1]}})  {{d[2]}} - {{d[3]}}</li>
+                {% endfor %}
+                <br>
+
+                <div class="grid_2">
+                    <label>Begin Year</label>
+                    <label>End Year</label>
+                    <label>Job Position</label>
+                    <label>Work Place</label>
+                    <input type="number" name="y_begin_w" >
+                    <input type="number" name="y_end_w" >
+                    <input type="text" name="job" >                    
+                    <input type="text" name="work" >
+                </div>
+
+                <button formaction="{{ url_for('form2') }}" formmethod="post">Add</button>
+
+            </div>
+
+
+            <p>Languages</p>
+            <div class="box">
+                {% for l in languages %}
+                    <li>{{l[0]}} - {{l[1]}}</li>
+                {% endfor %}
+                <br>
+
+                <div class="grid_language">
+                    <label>Language</label>
+                    <label>Level</label>
+
+                    <input type="text" name="language" >
+                    <input list="language_levels" name="level">
+                    <datalist id="language_levels">
+                        <option value="Beginner">
+                        <option value="Intermediate">
+                        <option value="Advanced">
+                    </datalist>
+                </div>
+
+                <button formaction="{{ url_for('form2') }}" formmethod="post">Add</button>
+
+            </div>
+
+            <br>
+            <button formaction="{{ url_for('form3') }}" formmethod="post">Continue</button>
+
+        </form>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+    </head>
+    <body>
+        <form action="{{ url_for('prueba') }}" method="post">
+            {% for lan in mat %}
+                <li>{{lan}}</li>
+            {% endfor %}
+            <input name="a">
+            <button>save</button>
+
+            {% for la in mat2 %}
+                <li>{{la}}</li>
+            {% endfor %}
+            <input name="a">
+            <button>save</button>
+
+            <button>submit</button>
+        </form>
+        
+    </body>
+</html>
