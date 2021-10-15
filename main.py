@@ -8,6 +8,10 @@ app.config["SESSION_PERMANENT"] = False
 app.config["SESSION_TYPE"] = "filesystem"
 Session(app)
 
+@app.route("/register")
+def register():
+    return render_template()
+
 @app.route("/")
 def index():
     session["personal_info"] = []
