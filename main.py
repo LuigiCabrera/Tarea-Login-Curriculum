@@ -10,7 +10,15 @@ Session(app)
 
 @app.route("/register")
 def register():
-    return render_template()
+    return render_template("register.html")
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        new_user = [request.form.get(data) for data in ["email", "password"]]
+        local_save(new_user)
+    return render_template("login.html")
+
 
 @app.route("/")
 def index():
