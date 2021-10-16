@@ -34,14 +34,27 @@
                 }
             };
 
-        
+            function login(){
+                let key;
+                for (let i = 0; i < localStorage.length; i++){
+                    key = localStorage.key(i);
+                    if (key === document.getElementById('email').value){
+                        if (localStorage.getItem(key) === document.getElementById('password').value){
+                            document.getElementById("form_login").action = "{{ url_for('main') }}";
+                            return null;
+                        }
+                    }
+                }
+                alert("Email or password are incorrect\nPlease write them correctly or go to /register")
+            }
+
         </script>
 
         <div class="header">
-            <h1>Create your Currivulum Vitae with us! <br>
+            <h1>Create your Curriculum Vitae with us! <br>
                 Login Here to Start!</h1>
         </div>
-        <form method="post">
+        <form id="form_login" method="post">
             <div class="box">
                 <h3>Log in</h3>
                 <p>Email</p>
@@ -51,7 +64,7 @@
                 <input id="password" name="password" type="password" placeholder="Min 5 characters" onmouseout="verify_data()" onkeydown="verify_data()">
                 <div id="incorrect_pass"></div>
                 <br><br>
-                <button id="submit" disabled>Log in</button>
+                <button id="submit" onclick="login()" disabled>Log in</button>
                 <br><br>
             </div>
         </form>

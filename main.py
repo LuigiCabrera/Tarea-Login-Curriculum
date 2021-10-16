@@ -14,16 +14,13 @@ def register():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    if request.method == "POST":
-        new_user = [request.form.get(data) for data in ["email", "password"]]
-        local_save(new_user)
     return render_template("login.html")
 
 @app.route("/main", methods=["POST"])
 def main():
-    return "a"
+    return render_template("main.html", email=request.form.get('email'))
 
-@app.route("/form1")
+@app.route("/form1", methods=["POST"])
 def index():
     session["personal_info"] = []
     return render_template("form1_personal_data.html")

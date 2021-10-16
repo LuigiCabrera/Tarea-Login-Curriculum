@@ -8,9 +8,6 @@
 
         <script>
 
-            //var msg_error_email = "*Invalid email";
-            //var msg_error_pass= "*Password to short";
-
             function verify_email(string){
                 if (string.includes('@') && string.includes('.') && string.length > 4) return true;
                 else return false;
@@ -37,11 +34,21 @@
                 }
             };
 
-        
+            function save_data(){
+                let email = document.getElementById('email').value;
+                for (let i = 0; i < localStorage.length; i++){
+                    if (localStorage.key(i) === email){
+                        alert("This email is alredy register!\nPlease Login");
+                        return null
+                    }
+                }
+                localStorage.setItem(email, document.getElementById('password').value);
+                alert("Your have register succesfully!");
+            }
         </script>
 
         <div class="header">
-            <h1>Create your Currivulum Vitae with us! <br>
+            <h1>Create your Curriculum Vitae with us! <br>
                 Register Here to Start!</h1>
         </div>
         <form action="{{ url_for('login') }}" method="post">
@@ -54,7 +61,7 @@
                 <input id="password" name="password" type="password" placeholder="Min 5 characters" onmouseout="verify_data()" onkeydown="verify_data()">
                 <div id="incorrect_pass"></div>
                 <br><br>
-                <button id="submit" disabled>Register</button>
+                <button id="submit" onclick="save_data()" disabled>Register</button>
                 <br><br>
             </div>
         </form>
