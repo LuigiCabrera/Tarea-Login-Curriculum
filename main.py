@@ -21,7 +21,7 @@ def main():
     return render_template("main.html", email=request.form.get('email'))
 
 @app.route("/form1", methods=["POST"])
-def index():
+def form1():
     session["personal_info"] = []
     return render_template("form1_personal_data.html")
 

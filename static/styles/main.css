@@ -29,6 +29,7 @@ button{
     border-radius: 8px;
     border-color: rgb(75, 75, 75);
     color: white;
+    box-shadow: 4px 2px 2px rgb(75, 75, 75);
 }
 
 button:hover{

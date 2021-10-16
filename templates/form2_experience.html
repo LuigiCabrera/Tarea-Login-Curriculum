@@ -3,16 +3,19 @@
     <head>
         <title>Render Your CV!</title>
         <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
-        <style>
-            
-        </style>
     </head>
     <body>
+
+        <script>
+
+        </script>
 
         <form method="post">
 
             <p>Studies</p>
             <div class="box">
+
+                <ul id="studies"></ul>
 
                 {% for d in studies %}
                     <li>({{d[0]}} - {{d[1]}})  {{d[2]}} - {{d[3]}}</li>
@@ -39,6 +42,7 @@
             <p>Work Experience</p>
             <div class="box">
                 
+                <ul id="works"></ul>
                 {% for d in work %}
                     <li>({{d[0]}} - {{d[1]}})  {{d[2]}} - {{d[3]}}</li>
                 {% endfor %}
@@ -62,6 +66,7 @@
 
             <p>Languages</p>
             <div class="box">
+                <ul id="languages"></ul>
                 {% for l in languages %}
                     <li>{{l[0]}} - {{l[1]}}</li>
                 {% endfor %}
@@ -85,7 +90,10 @@
             </div>
 
             <br>
-            <button formaction="{{ url_for('form3') }}" formmethod="post">Continue</button>
+            <div class='submit'>
+                <br>
+                <button formaction="{{ url_for('form3') }}" formmethod="post">Continue</button>
+            </div>
 
         </form>
     </body>

@@ -19,19 +19,28 @@
             };
 
             function verify_data(){
+                let email_v = true, pass_v = true;
                 if (verify_email(document.querySelector('#email').value) === false){
-                    document.getElementById('submit').disabled = true;
+                    email_v = false;
                     document.getElementById('email').style.borderColor = "rgb(255, 180, 166)";
-                    
-                }else if (verify_password(document.querySelector('#password').value) === false){
-                    document.getElementById('submit').disabled = true;
-                    document.getElementById('password').style.borderColor = "rgb(255, 180, 166)";
-                    
-                }else{
-                    document.getElementById('submit').disabled = false;
-                    document.getElementById('password').style.borderColor = "grey";
+                    document.getElementById('incorrect_email').innerHTML = 'Write a valid email';
+                }
+                else{
+                    document.getElementById('incorrect_email').innerHTML = '';
                     document.getElementById('email').style.borderColor = "grey";
                 }
+
+                if (verify_password(document.querySelector('#password').value) === false){
+                    pass_v = false;
+                    document.getElementById('password').style.borderColor = "rgb(255, 180, 166)";
+                    document.getElementById('incorrect_pass').innerHTML = 'Min 5 characteres';
+                }
+                else {
+                    document.getElementById('incorrect_pass').innerHTML = '';
+                    document.getElementById('password').style.borderColor = "grey";
+                }
+
+                if (email_v && pass_v) document.getElementById('submit').disabled = false;
             };
 
             function login(){
@@ -54,15 +63,16 @@
             <h1>Create your Curriculum Vitae with us! <br>
                 Login Here to Start!</h1>
         </div>
+        <br>
         <form id="form_login" method="post">
             <div class="box">
                 <h3>Log in</h3>
                 <p>Email</p>
                 <input id="email" name="email" type="text" placeholder="Write a valid email" onmouseout="verify_data()" onkeydown="verify_data()">
-                <div id="incorrect_email"></div>
+                <div style="color: rgb(220, 40, 40);margin:0px;margin-left:20px;" id="incorrect_email"></div>
                 <p>Password</p>
                 <input id="password" name="password" type="password" placeholder="Min 5 characters" onmouseout="verify_data()" onkeydown="verify_data()">
-                <div id="incorrect_pass"></div>
+                <div style="color: rgb(220, 40, 40);margin:0px;margin-left:20px;" id="incorrect_pass"></div>
                 <br><br>
                 <button id="submit" onclick="login()" disabled>Log in</button>
                 <br><br>
